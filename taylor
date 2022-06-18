@@ -1,0 +1,122 @@
+#!/usr/bin/env bash
+
+expressions=(
+# 1989 - Blank Space:
+"Nice to meet you, where you been?\nI could show you incredible things"
+"Magic, madness, heaven, sin"
+"Saw you there and I thought\nOh, my God, look at that face"
+"You look like my next mistake"
+"Love's a game, wanna play?"
+"New money, suit and tie\nI can read you like a magazine"
+"Ain't it funny? Rumors fly"
+"And I know you heard about me\nSo hey, let's be friends"
+"I'm dying to see how this one ends"
+"Grab your passport and my hand"
+"I can make the bad guys good for a weekend"
+"So it's gonna be forever\nOr it's gonna go down in flames"
+"You can tell me when it's over\nIf the high was worth the pain"
+"Got a long list of ex-lovers\nThey'll tell you I'm insane"
+"Cause you know I love the players\nAnd you love the game"
+"Cause we're young, and we're reckless\nWe'll take this way too far"
+"It'll leave you breathless\nOr with a nasty scar"
+"But I've got a blank space, baby\nAnd I'll write your name"
+"Cherry lips, crystal skies\nI could show you incredible things"
+"Stolen kisses, pretty lies"
+"You're the King, baby, I'm your Queen"
+"Find out what you want\nBe that girl for a month"
+"Wait, the worst is yet to come"
+"Screaming, crying, perfect storms"
+"I can make all the tables turn"
+"Rose garden filled with thorns"
+"Keep you second guessing like Oh, my God, who is she?\nI get drunk on jealousy"
+"But you'll come back each time you leave"
+"Cause, darling, I'm a nightmare dressed like a daydream"
+"Boys only want love if it's torture\nDon't say I didn't, say I didn't warn ya"
+# 1989 - Style:
+"Midnight
+You come and pick me up, no headlights"
+"Long drive Could end in burning flames or paradise"
+"Fade into view"
+"It's been a while since I have even heard from you"
+"And I should just tell you to leave 'cause I\nKnow exactly where it leads, but I\nWatch us go 'round and 'round each time"
+"You got that James Dean daydream look in your eye\nAnd I got that red lip classic thing that you like"
+"And when we go crashing down, we come back every time"
+"Cause we never go out of style, we never go out of style"
+"You got that long hair, slicked back, white T-shirt"
+"And I got that good girl faith and a tight little skirt"
+"So it goes"
+"He can't keep his wild eyes on the road"
+"Takes me home"
+"The lights are off, he's taking off his coat"
+"I say, I heard, oh That you've been out and about with some other girl"
+"He says, What you heard is true, but I Can't stop thinkin' 'bout you and I"
+"I said, I've been there too a few times"
+# 1989 - All you had to do was stay
+"People like you always want back the love they gave away\nAnd people like me wanna believe you when you say you've changed"
+"The more I think about it now, the less I know"
+"All I know is that you drove us off the road"
+"Stay"
+"Hey, all you had to do was stay"
+"Had me in the palm of your hand"
+"Then why'd you have to go and lock me out when I let you in?"
+"Hey, now you say you want it back Now that it's just too late"
+"Well, it could've been easy\nAll you had to do was stay"
+"All you had to do was stay"
+"Here you are now, calling me up, but I don't know what to say"
+"I've been picking up the pieces of the mess you made"
+"People like you always want back the love they pushed aside\nBut people like me are gone forever when you say goodbye"
+"Let me remind you\nThis was what you wanted\nYou ended it"
+"You were all I wanted\nBut not like this"
+# 1989 - New Romantics
+"We're all bored\nWe're all so tired of everything"
+"We wait for trains that just aren't coming"
+"We show off our different scarlet letters"
+"Trust me, mine is better"
+"We're so young\nBut we're on the road to ruin"
+"We play dumb but we know exactly what we're doin'"
+"We cry tears of mascara in the bathroom"
+"Honey, life is just a classroom"
+"'Cause baby, I could build a castle\nOut of all the bricks they threw at me"
+"And every day is like a battle\nBut every night with us is like a dream"
+)
+
+if [ $# -eq 0 ]
+then
+    selectedexpression=$(printf "%s\n" "${expressions[@]}" | shuf -n1)
+    printf "$selectedexpression.\n"
+fi
+
+if [ $# -eq 1 ]
+then
+    re='^[0-9]+$'
+    if [[ $1 =~ $re ]]
+    then
+        if [ $1 -le ${#expressions[@]} ]
+        then
+            printf "${expressions[$1]}.\n"
+        else
+            printf "Invalid expression number.\n"
+        fi
+    else
+        if [ $1 = "list" ]
+        then
+            printf "Expressions:\n"
+            for (( i=0; i<${#expressions[@]}; i++ ))
+            do
+                printf "$i: ${expressions[$i]}\n"
+            done
+        elif [ $1 = "help" ] || [ $1 = "--help" ] || [ $1 = "-h" ] || [ $1 = "-help" ]
+        then
+            printf "Usage: taylor [expression number]\n\n"
+            printf "Simple Taylor Swift expression generator.\n"
+            printf "If no expression number is given, a random expression will be chosen.\n\n"
+            printf "Commands:\n"
+            printf "       taylor list\n"
+            printf "The list of expressions will be printed.\n"
+            printf "       taylor help\n"
+            printf "Prints this help message.\n"
+        else
+            printf "Invalid argument.\nFor help, run taylor help.\n"
+        fi
+    fi
+fi
