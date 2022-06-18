@@ -1,8 +1,7 @@
 # taylor
-Taylor Swift expression generator.
+Taylor Swift expression generator.  
 
-
-Commands:
+## Commands:
 
     taylor
 Print random expression.
