@@ -1,17 +1,19 @@
 # taylor
 Taylor Swift expression generator.
 
+
 Commands:
-       taylor
+
+    taylor
 Print random expression.
 
-       taylor [expression number]
+    taylor [expression number]
 Print specific expression.
        
-       taylor list
+    taylor list
 The list of expressions will be printed.
 
-       taylor help
+    taylor help
 Prints help message.
 
 CopyLeft, WTFPL licensed.
